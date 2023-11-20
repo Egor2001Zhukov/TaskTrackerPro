@@ -26,3 +26,10 @@ Backend REST API-приложения для создания и распред�
 
 ### Работа приложения:
 Все функции и схемы описаны в документации от OpenApi по адресу _/api/docs_
+
+### Тестирование:
+C покрытием эндпоинтов:
+docker-compose run --rm -e TEST=1 -e DATABASE_URL="postgresql+asyncpg://test_user:password@test-postgres:5432/test_db" backend pytest --cov=app/api/routers/
+
+Без покрытия:
+docker-compose run --rm -e TEST=1 -e DATABASE_URL="postgresql+asyncpg://test_user:password@test-postgres:5432/test_db" backend pytest

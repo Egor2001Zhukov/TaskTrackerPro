@@ -12,6 +12,20 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data:cached
 
+  test-postgres:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: test_db
+    ports:
+      - "54320:5432" # Use a different port to avoid conflicts with the main database
+    expose:
+      - "54320" # Exposing the different port for clarity
+    volumes:
+      - test-db-data:/var/lib/postgresql/data:cached
+
   backend:
     build:
       context: backend
@@ -30,3 +44,5 @@ services:
 
 volumes:
   db-data:
+  test-db-data:
+

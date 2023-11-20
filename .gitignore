@@ -1,3 +1,4 @@
 .idea
 venv
 backend/.env.docker
+backend/.coverage

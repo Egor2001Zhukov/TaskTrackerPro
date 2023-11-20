@@ -69,7 +69,7 @@ async def update_task(db_session: AsyncSession, task_id: int, task_data: TaskUpd
 async def get_user_task(db_session: AsyncSession, user_id: int) -> Sequence[TaskDBModel]:
     tasks = (await db_session.scalars(select(TaskDBModel).where(TaskDBModel.user_id == user_id))).all()
     if not tasks:
-        raise HTTPException(status_code=404, detail=f"Tasks not found or user does not exist")
+        return []
     return tasks
 
 
